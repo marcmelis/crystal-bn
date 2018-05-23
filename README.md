@@ -1,2 +1,2 @@
-# crystal_bn_practice
+# Crystal classification Bayes
 Crystal classification using Bayesian Networks with Weka
