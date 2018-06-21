@@ -1,0 +1,99 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{appendix}
+\usepackage[hidelinks]{hyperref}
+\usepackage{hyperref}
+\usepackage{subfig}
+\usepackage[ampersand]{easylist}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry} 
+\renewcommand{\appendixname}{Webgrafia}
+\renewcommand{\appendixtocname}{Webgrafia}
+\renewcommand{\appendixpagename}{Webgrafia}
+
+
+\begin{document}
+\begin{titlepage}
+
+\begin{flushleft}
+Escola Politècnica Superior\\
+\vspace*{0.15in}
+Grau en Enginyeria Informàtica\\
+\vspace*{0.15in}
+Automatic Reasoning and Learning
+\end{flushleft}
+
+\begin{center}
+\vspace{2.0cm}
+\includegraphics[scale=0.3]{Figures/M-UdL.jpg} 
+\vspace{2.0cm}
+
+\begin{LARGE}
+\textbf{Pràctica de Models Probabilístics:}\\ 
+\vspace*{0.15in}
+Indentificació de classes de vidres en l'escena del crim
+\end{LARGE}
+\vspace{1.0cm}
+
+\begin{large}
+\textbf{Data}: 25 de Juny, de 2018 \\
+\textbf{Professor}: Ramón Béjar Torres \\
+\begin{tabular}{ll}
+\textbf{Nom: }Marc Melis Batalla & \textbf{DNI: }48257130W \\
+\textbf{Nom: }Roger Truchero Visa  & \textbf{DNI: }48056539V \\
+\end{tabular}
+\end{large}
+
+\vspace*{0.2in}
+\begin{center}
+\rule{120mm}{0.1mm}\\
+\end{center}
+\end{center}
+\vspace*{0.2in}
+\part*{Introducció}
+L'objectiu del treball és realitzar aprenentatge basat en xarxes bayesianes, en lloc de basat en sistemes
+de regles. Es tracta del problema de classificació de diferents classes de vidres en funció de diferents
+propietats físiques dels mateixos. Aquest és el valor que té cada un dels 11 atributs que trobareu
+per cada instància (propietats d'un cristall correctament identificat) en el fitxer glass.data que es troba juntament amb la pràctica.
+\end{titlepage}
+
+\lhead[\thepage]{\includegraphics[scale=0.05]{Figures/M-UdL.jpg}  }
+\chead[]{\textbf{Pràctica de Models Probabilístics}}
+\rhead[]{ARA}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\fancypagestyle{plain}{
+\fancyhead[L]{}
+\fancyhead[C]{}
+\fancyhead[R]{\thepage}
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{fancy}
+\vspace*{0.05in}
+
+\tableofcontents
+
+\vspace*{0.2in}
+
+\listoffigures
+
+\newpage
+
+
+\end{document}
+
