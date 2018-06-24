@@ -1,1 +1,7 @@
 \babel@toc {catalan}{}
+\contentsline {part}{I\hspace {1em}Parseig de dades}{2}{part.1}
+\contentsline {part}{II\hspace {1em}Aprenentatge de models amb K2}{3}{part.2}
+\contentsline {section}{\numberline {1}Model A}{4}{section.1}
+\contentsline {section}{\numberline {2}Model B}{5}{section.2}
+\contentsline {section}{\numberline {3}Model C}{6}{section.3}
+\contentsline {part}{III\hspace {1em}Selecci\IeC {\'o} del millor model}{7}{part.3}
