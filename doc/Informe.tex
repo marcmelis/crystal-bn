@@ -111,6 +111,8 @@ Per tal de discretitzar els valors hem utilitzat la funció \texttt{pandas.cut},
 Un cop tenim els valors discretitzats afegim els camps necesaris pel format \texttt{.arff}. Afegim la relació i els atributs amb els seus rangs (tenin em compte que el camp \texttt{Type} no el discretitzarem ja que es un valor ja discret que va de 0 a 7. Finalment afegim les dades en format \texttt{csv} just a continuació i ja tenim el fitxer discretitzat i enllestit per passar-ho a \textit{Weka}.\\
 
 L'script que em utilitzat es trobat al fitxer \texttt{src/data\_parsing.ipynb} com a una llibreta de \textit{Jupyter Notebook}\footnote{\url{http://jupyter.org}}.
+\\\\
+A l'hora de transformar-ho a \texttt{.arff} i descriure els atributs utilitzem els números de forma categòrica perquè d'aquesta manera aconseguim que un cristall amb 20\% de sodi sigui completament diferent d'un de 30\% (En cas que el nombre d'intervals sigui <10). Aquest comportament es podria canviar si féssim que els valors deixessin de ser categòrics per passar a ser numèrics i que la correlació entre dos valors, un cop discretitzats, siguin major com més pròxims es trobin.
 
 \newpage
 
@@ -213,9 +215,19 @@ I finalment, seleccionar l'algorisme d'aprenentatge K2 per, posteriorment, modif
 
 \part{10-fold Cross Validation}
 \section{Generació train-folds}
-Per tal de separar el training set i el test set hem utilitzat una proporció (10\% en aquest cas) per separar-los de forma aleatoria 10 vegades. D'aquesta forma simulem el \textit{folding} de 10 però cada cop la part del test podria incloure mostres de testos anteriors. L'script utilitzat es troba en la llibreta del codi font amb l'implementació degudament comentada.
+Per tal de separar el training set i el test set hem utilitzat una proporció (10\% en aquest cas) per separar-los de forma aleatòria 10 vegades. D'aquesta forma simulem el \textit{folding} de 10 però cada cop la part del test podria incloure mostres de testos anteriors. L'script utilitzat es troba en la llibreta del codi font amb l'implementació degudament comentada.
 
 \section{Evaluació test-folds}
+\begin{itemize}
+\item Carreguem cada arxiu \textit{crystal\_train\_i.arff} com a relació base.
+\item Adaptem els paràmetres d'execució del K2 segons toqui a cada model i configurem els test dataset que li volem passar. Aquest serà \textit{crystal\_test\_i.arff}. 
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.6]{Figures/8.png}
+\caption{Configuració test sets Fold Cross Validation}
+\end{figure}
+\item Un cop hem carregat el dataset \textit{i} de train i de test, fem 10 execucions d'aquest i ens quedem amb el millor.
+\end{itemize}
 \newpage
 
 \part{Selecció del millor model}
@@ -257,7 +269,9 @@ Per tal de separar el training set i el test set hem utilitzat una proporció (1
 \end{table}
 
 \vspace*{0.5in}
-
+\begin{itemize}
+\item Agafem la xarxa bayesiana que hem obtingut a partir del \textit{Fold 2}, ja que és la que menys \% d'error té , amb un \textbf{18.134\%}, a l'hora de predir satisfactòriament.
+\end{itemize}
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{Figures/r4.png}
@@ -304,7 +318,9 @@ Per tal de separar el training set i el test set hem utilitzat una proporció (1
 \end{table}
 
 \vspace*{0.5in}
-
+\begin{itemize}
+\item Agafem la xarxa bayesiana que hem obtingut a partir del \textit{Fold 2}, ja que és la que menys \% d'error té , amb un \textbf{38.079\%}, a l'hora de predir satisfactòriament.
+\end{itemize}
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.5]{Figures/r5.png}
