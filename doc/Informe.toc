@@ -1,7 +1,12 @@
 \babel@toc {catalan}{}
-\contentsline {part}{I\hspace {1em}Parseig de dades}{2}{part.1}
-\contentsline {part}{II\hspace {1em}Aprenentatge de models amb K2}{3}{part.2}
-\contentsline {section}{\numberline {1}Model A}{4}{section.1}
-\contentsline {section}{\numberline {2}Model B}{5}{section.2}
-\contentsline {section}{\numberline {3}Model C}{6}{section.3}
-\contentsline {part}{III\hspace {1em}Selecci\IeC {\'o} del millor model}{7}{part.3}
+\contentsline {part}{I\hspace {1em}Parseig de dades}{3}{part.1}
+\contentsline {part}{II\hspace {1em}Aprenentatge de models amb K2}{4}{part.2}
+\contentsline {section}{\numberline {1}Model A}{5}{section.1}
+\contentsline {section}{\numberline {2}Model B}{6}{section.2}
+\contentsline {section}{\numberline {3}Model C}{7}{section.3}
+\contentsline {part}{III\hspace {1em}10-fold Cross Validation}{8}{part.3}
+\contentsline {section}{\numberline {4}Generaci\IeC {\'o} train-folds}{8}{section.4}
+\contentsline {section}{\numberline {5}Evaluaci\IeC {\'o} test-folds}{8}{section.5}
+\contentsline {part}{IV\hspace {1em}Selecci\IeC {\'o} del millor model}{9}{part.4}
+\contentsline {section}{\numberline {6}Model A}{9}{section.6}
+\contentsline {section}{\numberline {7}Model C}{10}{section.7}

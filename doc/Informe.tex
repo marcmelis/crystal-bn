@@ -12,6 +12,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{hyperref}
 \usepackage{subfig}
+\usepackage{float}
 \usepackage[ampersand]{easylist}
 \usepackage{multirow}
 \usepackage{amsmath}
@@ -61,7 +62,7 @@ Indentificació de classes de vidres en l'escena del crim
 \end{center}
 \end{center}
 \vspace*{0.2in}
-\part*{Introducció}
+\part*{Objectius}
 L'objectiu del treball és realitzar aprenentatge basat en xarxes bayesianes, en lloc de basat en sistemes
 de regles. Es tracta del problema de classificació de diferents classes de vidres en funció de diferents
 propietats físiques dels mateixos. Aquest és el valor que té cada un dels 11 atributs que trobareu
@@ -88,13 +89,28 @@ per cada instància (propietats d'un cristall correctament identificat) en el fi
 
 \tableofcontents
 
-\vspace*{0.2in}
+\newpage
 
 \listoffigures
+\vspace*{0.2in}
+\listoftables
 
 \newpage
 
 \part{Parseig de dades}
+Donat el problema ens hem trobat amb una sèrie de dades amb valors reals, però per tal de poder-los implementar dins d'una xarxa bayesiana necessitem discretitzar-los.\\\\ Per a fer-ho hem decidit utilitzar la llibreria \textit{pandas}\footnote{\url{https://pandas.pydata.org}} de \textit{python}. També hem afegit una primera línia al fitxer de les dades \texttt{glass.data.txt} amb l'identificador de columna donat per \texttt{glass.names.txt} per facilitar la lectura del document a \textit{pandas} i no haver-ho d'afegir a posteriori i eliminem la columna d'identificadors perquè no ens aporta informació útil i \textit{pandas} ja inclou els seus propis índexs.\\\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Figures/p1.png}
+\caption{Tendència central, dispersió i forma de la distribució del conjunt de dades}
+\end{figure}
+\vspace*{0.2in}
+Per tal de discretitzar els valors hem utilitzat la funció \texttt{pandas.cut}, que retorna els valors en diferents intervals segons el número de particions que imposis per paràmetre. Un cop tenim els intervals obtenim un diccionari amb, per cada interval, el número natural que li correspon de 0 fins al número d'intervals $-$ 1.\\
+
+Un cop tenim els valors discretitzats afegim els camps necesaris pel format \texttt{.arff}. Afegim la relació i els atributs amb els seus rangs (tenin em compte que el camp \texttt{Type} no el discretitzarem ja que es un valor ja discret que va de 0 a 7. Finalment afegim les dades en format \texttt{csv} just a continuació i ja tenim el fitxer discretitzat i enllestit per passar-ho a \textit{Weka}.\\
+
+L'script que em utilitzat es trobat al fitxer \texttt{src/data\_parsing.ipynb} com a una llibreta de \textit{Jupyter Notebook}\footnote{\url{http://jupyter.org}}.
 
 \newpage
 
@@ -192,8 +208,107 @@ I finalment, seleccionar l'algorisme d'aprenentatge K2 per, posteriorment, modif
 	\caption{Graf aleatori generat amb els paràmetres del model C amb node arrel \textbf{type}}
 	\end{figure}
 \end{itemize}
+
+\newpage
+
+\part{10-fold Cross Validation}
+\section{Generació train-folds}
+Per tal de separar el training set i el test set hem utilitzat una proporció (10\% en aquest cas) per separar-los de forma aleatoria 10 vegades. D'aquesta forma simulem el \textit{folding} de 10 però cada cop la part del test podria incloure mostres de testos anteriors. L'script utilitzat es troba en la llibreta del codi font amb l'implementació degudament comentada.
+
+\section{Evaluació test-folds}
 \newpage
 
 \part{Selecció del millor model}
+\section{Model A}
+\vspace*{0.5in}
+
+\begin{table}[htbp]
+\center
+\begin{tabular}{|c||c|c|c|c|c|}
+\hline
+ & Fold 0 & Fold 1 & Fold 2 & Fold 3 & Fold 4 \\
+\hline \hline
+\textbf{Error \%}
+ & 61.904 & 52.381 & 18.134 & 47.619 & 64.248\\
+\hline
+\textbf{LogScoreBayes} 
+ & -3552.58 & -3654.07 & -3578.69 & -3594.25 & -486.30  \\
+\hline
+\end{tabular}
+\caption{Errors de cada Fold pel model A - Part 1}
+\end{table}
+
+\vspace*{0.5in}
+
+\begin{table}[htbp]
+\center
+\begin{tabular}{|c||c|c|c|c|c|}
+\hline
+ & Fold 5 & Fold 6 & Fold 7 & Fold 8 & Fold 9 \\
+\hline \hline
+\textbf{Error \%}
+ & 38.095 & 57.142 & 47.619 & 57.142 & 52.381\\
+\hline
+\textbf{LogScoreBayes} 
+ & -3614.40 & -3626.01 & -3664.74 & -3557.56 & -3637.68 \\
+\hline
+\end{tabular}
+\caption{Errors de cada Fold pel model A - Part 2}
+\end{table}
+
+\vspace*{0.5in}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.6]{Figures/r4.png}
+\caption{Graf de la millor xarxa bayesiana obtinguda pel model A}
+\end{figure}
+
+\newpage
+
+\section{Model C}
+\vspace*{0.5in}
+
+\begin{table}[htbp]
+\center
+\begin{tabular}{|c||c|c|c|c|c|}
+\hline
+ & Fold 0 & Fold 1 & Fold 2 & Fold 3 & Fold 4 \\
+\hline \hline
+\textbf{Error \%}
+ & 90.476 & 61.904 & 38.079 & 57.142 & 90.476\\
+\hline
+\textbf{LogScoreBayes} 
+ & -3738.98 & -3705.42 & -3717.93 & -3728.72 & -3698.30  \\
+\hline
+\end{tabular}
+\caption{Errors de cada Fold pel model C - Part 1}
+\end{table}
+
+\vspace*{0.5in}
+
+\begin{table}[htbp]
+\center
+\begin{tabular}{|c||c|c|c|c|c|}
+\hline
+ & Fold 5 & Fold 6 & Fold 7 & Fold 8 & Fold 9 \\
+\hline \hline
+\textbf{Error \%}
+ & 71.428 & 61.904 & 76.190 & 61.904 & 80.952\\
+\hline
+\textbf{LogScoreBayes} 
+ & -3735.10 & -3711.46 & -3707.39 & -3722.13 & -3732.31 \\
+\hline
+\end{tabular}
+\caption{Errors de cada Fold pel model C - Part 2}
+\end{table}
+
+\vspace*{0.5in}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.5]{Figures/r5.png}
+\caption{Graf de la millor xarxa bayesiana obtinguda pel model C}
+\end{figure}
 \end{document}
 

@@ -3,4 +3,9 @@
 \BOOKMARK [1][-]{section.1}{Model A}{part.2}% 3
 \BOOKMARK [1][-]{section.2}{Model B}{part.2}% 4
 \BOOKMARK [1][-]{section.3}{Model C}{part.2}% 5
-\BOOKMARK [0][-]{part.3}{III Selecci\363 del millor model}{}% 6
+\BOOKMARK [0][-]{part.3}{III 10-fold Cross Validation}{}% 6
+\BOOKMARK [1][-]{section.4}{Generaci\363 train-folds}{part.3}% 7
+\BOOKMARK [1][-]{section.5}{Evaluaci\363 test-folds}{part.3}% 8
+\BOOKMARK [0][-]{part.4}{IV Selecci\363 del millor model}{}% 9
+\BOOKMARK [1][-]{section.6}{Model A}{part.4}% 10
+\BOOKMARK [1][-]{section.7}{Model C}{part.4}% 11
